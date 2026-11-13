@@ -1,0 +1,21 @@
+{
+  "name": "playwright-visual-regression-demo",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Démo de tests de non régression visuelle avec Playwright",
+  "type": "module",
+  "scripts": {
+    "start": "node scripts/server.mjs",
+    "test": "playwright test",
+    "test:update": "playwright test --update-snapshots",
+    "test:ui": "playwright test --ui",
+    "report": "playwright show-report",
+    "docker:test": "sh scripts/docker.sh",
+    "docker:update": "sh scripts/docker.sh --update-snapshots",
+    "demo:break": "git apply demo/regression.patch",
+    "demo:fix": "git apply -R demo/regression.patch"
+  },
+  "devDependencies": {
+    "@playwright/test": "1.65.0"
+  }
+}

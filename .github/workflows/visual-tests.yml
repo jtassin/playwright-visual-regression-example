@@ -1,0 +1,31 @@
+name: Visual regression
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+jobs:
+  visual:
+    runs-on: ubuntu-latest
+    # Même image que scripts/docker.sh : rendu strictement identique au local
+    container:
+      image: mcr.microsoft.com/playwright:v1.65.0-noble
+      options: --ipc=host
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      - run: npx playwright test
+        env:
+          HOME: /root # requis par Firefox/WebKit dans le conteneur
+      - name: Rapport (expected / actual / diff)
+        if: failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: playwright-report
+          path: playwright-report/
+          retention-days: 7

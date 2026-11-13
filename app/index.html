@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Démo non régression visuelle</title>
+  <link rel="stylesheet" href="/styles.css" />
+</head>
+<body>
+  <header class="topbar">
+    <span class="logo">Factur'App</span>
+    <!-- Contenu dynamique : masqué dans les tests -->
+    <span class="now" data-testid="now"></span>
+  </header>
+
+  <main class="container">
+    <h1>Tableau de bord</h1>
+
+    <section class="kpis">
+      <article class="kpi"><span>CA du mois</span><strong>12 480 €</strong></article>
+      <article class="kpi"><span>Factures en attente</span><strong>3</strong></article>
+      <article class="kpi"><span>TVA à reverser</span><strong>2 496 €</strong></article>
+    </section>
+
+    <section class="card" data-testid="invoices">
+      <h2>Dernières factures</h2>
+      <table>
+        <thead><tr><th>N°</th><th>Client</th><th>Montant</th><th>Statut</th></tr></thead>
+        <tbody>
+          <tr><td>F-2026-041</td><td>Acme SAS</td><td>1 200 €</td><td><span class="badge paid">Payée</span></td></tr>
+          <tr><td>F-2026-042</td><td>Globex</td><td>3 450 €</td><td><span class="badge pending">En attente</span></td></tr>
+          <tr><td>F-2026-043</td><td>Initech</td><td>780 €</td><td><span class="badge late">En retard</span></td></tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section class="card cta" data-testid="cta">
+      <div>
+        <h2>Nouvelle facture</h2>
+        <p>Créez et envoyez une facture en moins d'une minute.</p>
+      </div>
+      <button class="btn" data-testid="cta-button">Créer une facture</button>
+      <!-- Animation infinie : neutralisée dans les tests -->
+      <span class="spinner" aria-hidden="true"></span>
+    </section>
+  </main>
+
+  <script src="/app.js"></script>
+</body>
+</html>
