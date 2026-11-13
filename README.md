@@ -54,6 +54,8 @@ Pour un changement visuel **volontaire** : lancer le workflow *Update snapshots*
 * `.github/workflows/visual-tests.yml` : sur PR et `main`, upload du rapport en artefact en cas d'échec.
 * `.github/workflows/update-snapshots.yml` : `workflow_dispatch`, régénère et pousse les baselines.
 
+Un commit poussé avec le `GITHUB_TOKEN` ne déclenche pas d'autre workflow : après *Update snapshots*, relancer *Visual regression* à la main (ou utiliser un PAT / une GitHub App pour le push).
+
 ## Limites à garder en tête
 
 * Coût de maintenance : chaque changement UI volontaire impose une mise à jour des baselines. Préférer des captures de composants à des pages entières.
